@@ -12,9 +12,9 @@ public class Performance{
 //readMarks() method
     public void readMarks(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the marks of 10 Students: ");
+        System.out.println("Enter the marks of 10 Students ");
         
-        
+ //validation for entering marks >= 0 and <= 100       
         for (int i=0 ; i<10 ; i++){
             boolean validinp = false;
 

@@ -1,35 +1,53 @@
+import java.util.Scanner;
+
 public class AlphabetWarGame {
 
-    // Strengths for the left-side letters
-    private int strength_w;
-    private int strength_p;
-    private int strength_b;
-    private int strength_s;
+    //class declared with private instance variables
+    // Default strengths for the left-side letters
+    private int strength_w = 4;
+    private int strength_p = 3;
+    private int strength_b = 2;
+    private int strength_s = 1;
 
-    // Strengths for the right-side letters
-    private int strength_m;
-    private int strength_q;
-    private int strength_d;
-    private int strength_z;
+    // Default strengths for the right-side letters
+    private int strength_m = 4;
+    private int strength_q = 3;
+    private int strength_d = 2;
+    private int strength_z = 1;
+
+
 
     // Constructors
     public AlphabetWarGame() {
-        // Set default strengths
+        // Default constructor with default strengths
     }
 
+    // Parameterized constructor to customize strengths
     public AlphabetWarGame(int strength_w, int strength_p, int strength_b, int strength_s,
                            int strength_m, int strength_q, int strength_d, int strength_z) {
+        setCustomStrengths(strength_w, strength_p, strength_b, strength_s,
+                strength_m, strength_q, strength_d, strength_z);
+    }
+
+
+    // Method to set custom strengths
+    public void setCustomStrengths(int strength_w, int strength_p, int strength_b, int strength_s,
+                                   int strength_m, int strength_q, int strength_d, int strength_z) {
         this.strength_w = strength_w;
         this.strength_p = strength_p;
-        this.strength_b = strength_b;
-        this.strength_s = strength_s;
+        this.strength_b = strength_b;   
+        this.strength_s = strength_s;               
         this.strength_m = strength_m;
         this.strength_q = strength_q;
         this.strength_d = strength_d;
         this.strength_z = strength_z;
     }
+    //this keyword is used to differentiate between method or constructor which has a parameter with same name as object variable.
 
-    // Method to determine the winner when only one word is passed
+
+    // Method for one-word battle
+    //calculateStrength : takes word as input and calculate total strength for both
+    //determineWinner : words and returns a string stating which side has won or tied
     public String battle(String word) {
         int leftStrength = calculateStrength(word, "w", "p", "b", "s");
         int rightStrength = calculateStrength(word, "m", "q", "d", "z");
@@ -37,15 +55,8 @@ public class AlphabetWarGame {
         return determineWinner(leftStrength, rightStrength);
     }
 
-    // Method to determine the winner when separate left and right words are passed
-    public String battle(String leftWord, String rightWord) {
-        int leftStrength = calculateStrength(leftWord, "w", "p", "b", "s");
-        int rightStrength = calculateStrength(rightWord, "m", "q", "d", "z");
 
-        return determineWinner(leftStrength, rightStrength);
-    }
-
-    // Helper method to calculate the total strength of a word
+    // calculateStrength method to calculates the total strength of a word
     private int calculateStrength(String word, String... letters) {
         int totalStrength = 0;
 
@@ -61,7 +72,8 @@ public class AlphabetWarGame {
         return totalStrength;
     }
 
-    // Helper method to get the strength of a letter
+
+    // getStrength method  gets the strength of a letter
     private int getStrength(String letter) {
         switch (letter.toLowerCase()) {
             case "w":
@@ -85,7 +97,7 @@ public class AlphabetWarGame {
         }
     }
 
-    // Helper method to determine the winner based on strengths
+    // determineWinner method to determine the winner based on strengths
     private String determineWinner(int leftStrength, int rightStrength) {
         if (leftStrength > rightStrength) {
             return "Left side wins!";
@@ -96,15 +108,45 @@ public class AlphabetWarGame {
         }
     }
 
+
+    //main method
     public static void main(String[] args) {
-        // Example test cases
-        AlphabetWarGame game1 = new AlphabetWarGame();
-        System.out.println(game1.battle("z")); // Right side wins!
+        Scanner scanner = new Scanner(System.in);
 
-        AlphabetWarGame game2 = new AlphabetWarGame();
-        System.out.println(game2.battle("zdqmwpbs")); // Let's fight again!
+        System.out.println("Enter strength for 'w': ");
+        int strength_w = scanner.nextInt();
 
-        AlphabetWarGame game3 = new AlphabetWarGame();
-        System.out.println(game3.battle("wwwwwwz")); // Left side wins!
+        System.out.println("Enter strength for 'p': ");
+        int strength_p = scanner.nextInt();
+
+        System.out.println("Enter strength for 'b': ");
+        int strength_b = scanner.nextInt();
+
+        System.out.println("Enter strength for 's': ");
+        int strength_s = scanner.nextInt();
+
+        System.out.println("Enter strength for 'm': ");
+        int strength_m = scanner.nextInt();
+
+        System.out.println("Enter strength for 'q': ");
+        int strength_q = scanner.nextInt();
+
+        System.out.println("Enter strength for 'd': ");
+        int strength_d = scanner.nextInt();
+
+        System.out.println("Enter strength for 'z': ");
+        int strength_z = scanner.nextInt();
+
+        
+        // Example test case with custom strengths
+        AlphabetWarGame customGame = new AlphabetWarGame(strength_w, strength_p, strength_b, strength_s,
+                strength_m, strength_q, strength_d, strength_z);
+
+        System.out.println("Who will win....?: ");
+        String word = scanner.next();
+
+        System.out.println(customGame.battle(word));
+
+        scanner.close();
     }
 }

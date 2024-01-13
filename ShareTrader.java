@@ -14,13 +14,13 @@ public class ShareTrader {
         int n = prices.length;
 
         // Iterate through all possible transactions
-        for (int firstBuy = 0; firstBuy < n - 1; firstBuy++) {
-            for (int firstSell = firstBuy + 1; firstSell < n; firstSell++) {
+        for (int fBuy = 0; fBuy < n - 1; fBuy++) {
+            for (int fSell = fBuy + 1; fSell < n; fSell++) {
                 // Calculate profit for the first transaction
-                int profit1 = prices[firstSell] - prices[firstBuy];
+                int profit1 = prices[fSell] - prices[fBuy];
 
                 // Iterate through the remaining transactions
-                for (int secondBuy = firstSell + 1; secondBuy < n - 1; secondBuy++) {
+                for (int secondBuy = fSell + 1; secondBuy < n - 1; secondBuy++) {
                     for (int secondSell = secondBuy + 1; secondSell < n; secondSell++) {
                         // Calculate profit for the second transaction
                         int profit2 = prices[secondSell] - prices[secondBuy];

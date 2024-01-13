@@ -59,12 +59,6 @@ class CoinCombinationCalculator implements Callable<Integer> {
     }
 }
 
-
-//A single-threaded executor in Java is an instance of the ExecutorService interface 
-//that manages a single thread for executing tasks. 
-//It is created using the Executors.newSingleThreadExecutor() method, 
-//which returns an instance of SingleThreadExecutor.
-
 public class coin {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
